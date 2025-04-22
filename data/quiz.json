@@ -1,12 +1,15 @@
 [
     {
-        "question": "What is wrong in this squat?",
-        "options": ["Knees go past toes", "Feet too far apart", "Looking up"],
-        "answer": "Knees go past toes"
+      "type": 1,
+      "video": "videos/question1_form.mp4",
+      "question": "What is wrong with the form in the video?",
+      "choices": ["Back is rounded", "Feet are too wide", "Arms are too high", "Nothing is wrong"],
+      "answer": "Back is rounded"
     },
     {
-        "question": "Which push-up form is correct?",
-        "options": ["Elbows flared out", "Butt high up", "Body in straight line"],
-        "answer": "Body in straight line"
+      "type": 2,
+      "question": "Which of the following shows correct push-up form?",
+      "choices": ["Option A", "Option B", "Option C", "Option D"],
+      "answer": "Option C"
     }
-]
+  ]

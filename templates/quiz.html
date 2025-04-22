@@ -1,16 +1,30 @@
 <!DOCTYPE html>
-<html>
-<head><title>Form Quiz</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Quiz</title>
+</head>
 <body>
-    <h1>Form Knowledge Quiz</h1>
+    <h1>Quiz Question {{ question_id }}</h1>
+
+    {% if question.type == 1 %}
+        <video width="400" controls>
+            <source src="{{ url_for('static', filename=question.video) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+
     <form method="POST">
-        {% for q in quiz %}
-            <p><strong>{{ loop.index }}. {{ q.question }}</strong></p>
-            {% for opt in q.options %}
-                <input type="radio" name="q{{ loop.index0 }}" value="{{ opt }}"> {{ opt }}<br>
-            {% endfor %}
+        <p>{{ question.question }}</p>
+
+        {% for choice in question.choices %}
+            <label>
+                <input type="radio" name="answer" value="{{ choice }}" required>
+                {{ choice }}
+            </label><br>
         {% endfor %}
-        <input type="submit" value="Submit">
+
+        <button type="submit">Next</button>
     </form>
 </body>
 </html>

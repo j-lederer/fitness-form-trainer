@@ -2,14 +2,14 @@
 <html>
 <head><title>Learn Proper Form</title></head>
 <body>
-    <h1>Exercise Tutorials</h1>
-    {% for lesson in lessons %}
-        <h2>{{ lesson.name }}</h2>
+    <div class="container mt-5">
+        <h2>{{ lesson.title }}</h2>
         <video width="320" height="240" controls>
-            <source src="{{ url_for('static', filename='videos/' + lesson.video) }}" type="video/mp4">
+          <source src="{{ lesson.video }}" type="video/mp4">
         </video>
         <p>{{ lesson.description }}</p>
-    {% endfor %}
-    <a href="/">Home</a>
+        <a href="/learn/{{ next_id }}" class="btn btn-secondary">Next</a>
+        <a href="/quiz/1" class="btn btn-success">Go to Quiz</a>
+      </div>
 </body>
 </html>
