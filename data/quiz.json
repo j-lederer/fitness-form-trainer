@@ -1,0 +1,12 @@
+[
+    {
+        "question": "What is wrong in this squat?",
+        "options": ["Knees go past toes", "Feet too far apart", "Looking up"],
+        "answer": "Knees go past toes"
+    },
+    {
+        "question": "Which push-up form is correct?",
+        "options": ["Elbows flared out", "Butt high up", "Body in straight line"],
+        "answer": "Body in straight line"
+    }
+]

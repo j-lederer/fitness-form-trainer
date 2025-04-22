@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Learn Proper Form</title></head>
+<body>
+    <h1>Exercise Tutorials</h1>
+    {% for lesson in lessons %}
+        <h2>{{ lesson.name }}</h2>
+        <video width="320" height="240" controls>
+            <source src="{{ url_for('static', filename='videos/' + lesson.video) }}" type="video/mp4">
+        </video>
+        <p>{{ lesson.description }}</p>
+    {% endfor %}
+    <a href="/">Home</a>
+</body>
+</html>
