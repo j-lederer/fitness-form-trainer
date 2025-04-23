@@ -1,15 +1,23 @@
 [
-    {
-      "type": 1,
-      "video": "videos/question1_form.mp4",
-      "question": "What is wrong with the form in the video?",
-      "choices": ["Back is rounded", "Feet are too wide", "Arms are too high", "Nothing is wrong"],
-      "answer": "Back is rounded"
-    },
-    {
-      "type": 2,
-      "question": "Which of the following shows correct push-up form?",
-      "choices": ["Option A", "Option B", "Option C", "Option D"],
-      "answer": "Option C"
-    }
-  ]
+  {
+    "question": "What is wrong with the form shown in this video?",
+    "video": "wrong_pushup.mp4",
+    "options": [
+      "Hands positioned too wide",
+      "Hips sagging too low",
+      "Elbows flaring out too much",
+      "Not going down far enough"
+    ],
+    "answer": "Hips sagging too low"
+  },
+  {
+    "question": "Which body part should stay engaged during a plank to prevent lower back pain?",
+    "options": [
+      "Shoulders",
+      "Core",
+      "Quads",
+      "Calves"
+    ],
+    "answer": "Core"
+  }
+]

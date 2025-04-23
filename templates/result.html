@@ -1,11 +1,59 @@
-<!DOCTYPE html>
-<html>
-<head><title>Quiz Result</title></head>
-<body>
-    <div class="container mt-5">
-        <h2>Quiz Completed!</h2>
-        <p>Your score: {{ score }} out of {{ total }}</p>
-        <a href="/" class="btn btn-primary">Restart</a>
-      </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block back_button %}
+<div class="back-button">
+    <button onclick="goBack()" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-info text-white">
+        <h2 class="mb-0">Your Results</h2>
+    </div>
+    <div class="card-body text-center">
+        <h3>You scored {{ score }} out of {{ total }}</h3>
+        
+        {% set percentage = (score / total * 100) | int %}
+        
+        <div class="progress mt-4 mb-3" style="height: 30px;">
+            <div class="progress-bar {% if percentage >= 70 %}bg-success{% elif percentage >= 40 %}bg-warning{% else %}bg-danger{% endif %}" 
+                 role="progressbar" 
+                 style="width: {{ percentage }}%;" 
+                 aria-valuenow="{{ percentage }}" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">{{ percentage }}%</div>
+        </div>
+        
+        {% if percentage >= 70 %}
+            <div class="alert alert-success mt-4" role="alert">
+                <h4 class="alert-heading">Great job!</h4>
+                <p>You have a solid understanding of proper exercise form.</p>
+            </div>
+        {% elif percentage >= 40 %}
+            <div class="alert alert-warning mt-4" role="alert">
+                <h4 class="alert-heading">Good effort!</h4>
+                <p>You're on the right track, but there's room for improvement.</p>
+            </div>
+        {% else %}
+            <div class="alert alert-danger mt-4" role="alert">
+                <h4 class="alert-heading">Keep learning!</h4>
+                <p>We recommend reviewing the lessons again to improve your understanding.</p>
+            </div>
+        {% endif %}
+        
+        <div class="mt-4">
+            <a href="/" class="btn btn-primary">
+                <i class="bi bi-house-fill"></i> Back to Home
+            </a>
+            <a href="/learn/1" class="btn btn-outline-primary ms-2">
+                <i class="bi bi-book"></i> Review Lessons
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

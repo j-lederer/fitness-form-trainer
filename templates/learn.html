@@ -1,15 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head><title>Learn Proper Form</title></head>
-<body>
-    <div class="container mt-5">
-        <h2>{{ lesson.title }}</h2>
-        <video width="320" height="240" controls>
-          <source src="{{ lesson.video }}" type="video/mp4">
-        </video>
-        <p>{{ lesson.description }}</p>
-        <a href="/learn/{{ next_id }}" class="btn btn-secondary">Next</a>
-        <a href="/quiz/1" class="btn btn-success">Go to Quiz</a>
-      </div>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}{{ lesson.title }}{% endblock %}
+
+{% block back_button %}
+<div class="back-button">
+    <button onclick="goBack()" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+        <h2 class="mb-0">{{ lesson.title }}</h2>
+    </div>
+    <div class="card-body">
+        {% if lesson.video %}
+        <div class="text-center mb-4">
+            <video class="img-fluid rounded" controls>
+                <source src="{{ url_for('static', filename='videos/' + lesson.video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {% endif %}
+        
+        <!-- {% if lesson.image %}
+        <div class="text-center mb-4">
+            <img src="{{ url_for('static', filename='images/' + lesson.image) }}" class="img-fluid rounded" alt="{{ lesson.title }}">
+        </div>
+        {% endif %} -->
+        
+        <div class="lesson-content">
+            {{ lesson.content | safe }}
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-4">
+            {% if lesson_id > 1 %}
+            <a href="/learn/{{ lesson_id - 1 }}" class="btn btn-outline-primary">
+                <i class="bi bi-arrow-left"></i> Previous Lesson
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+            <a href="/learn/{{ next_id }}" class="btn btn-primary">
+                Next Lesson <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

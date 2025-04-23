@@ -1,4 +1,14 @@
 [
-    {"title": "Push-Up", "video": "/static/videos/pushup.mp4", "description": "Keep your back flat and elbows tucked in."},
-    {"title": "Squat", "video": "/static/videos/squat.mp4", "description": "Keep knees behind toes and back straight."}
-  ]
+  {
+    "title": "Proper Push-up Form",
+    "content": "<p>Push-ups are a fundamental exercise that targets multiple muscle groups...</p><h3>Key Points:</h3><ul><li>Keep your body in a straight line</li><li>Position hands slightly wider than shoulder width</li><li>Lower your chest to the ground</li><li>Push through your palms to return to starting position</li></ul>",
+    "video": "pushup.mp4",
+    "image": "pushup.jpg"
+  },
+  {
+    "title": "Squat Technique",
+    "content": "<p>Squats are essential for developing lower body strength...</p>",
+    "video": "squat.mp4",
+    "image": "squat.jpg"
+  }
+]

@@ -29,7 +29,7 @@ def learn(lesson_id):
         })
     session.modified = True 
     print("SESSION DATA:", dict(session))
-    return render_template("learn.html", lesson=lessons[lesson_id - 1], next_id=lesson_id + 1)
+    return render_template("learn.html", lesson=lessons[lesson_id - 1], next_id=lesson_id + 1, lesson_id=lesson_id)
 
 @app.route("/quiz/<int:question_id>", methods=["GET", "POST"])
 def quiz_page(question_id):

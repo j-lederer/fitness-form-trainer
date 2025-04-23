@@ -1,30 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Fitness Quiz</title>
-</head>
-<body>
-    <h1>Quiz Question {{ question_id }}</h1>
+{% extends "base.html" %}
 
-    {% if question.type == 1 %}
-        <video width="400" controls>
-            <source src="{{ url_for('static', filename=question.video) }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    {% endif %}
+{% block title %}Quiz - Question {{ question_id }}{% endblock %}
 
-    <form method="POST">
-        <p>{{ question.question }}</p>
+{% block back_button %}
+<div class="back-button">
+    <button onclick="goBack()" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </button>
+</div>
+{% endblock %}
 
-        {% for choice in question.choices %}
-            <label>
-                <input type="radio" name="answer" value="{{ choice }}" required>
-                {{ choice }}
-            </label><br>
-        {% endfor %}
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">Question {{ question_id }}</h2>
+    </div>
+    <div class="card-body">
+        <h3>{{ question.question }}</h3>
+        
+        {% if question.video %}
+        <div class="text-center my-4">
+            <video class="img-fluid rounded" controls autoplay loop>
+                <source src="{{ url_for('static', filename='videos/' + question.video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p class="mt-2 text-muted">Watch the video carefully and identify the form issue.</p>
+        </div>
+        {% endif %}
+        
+        {% if question.image %}
+        <div class="text-center my-4">
+            <img src="{{ url_for('static', filename='images/' + question.image) }}" class="img-fluid rounded" alt="Question image">
+        </div>
+        {% endif %}
+        
+        <form id="quizForm" action="/quiz/{{ question_id }}" method="post">
+            {% if question.options %}
+            <div class="options mt-3">
+                {% for option in question.options %}
+                <div class="form-check mb-3 p-2 border rounded {% if loop.first %}border-light{% endif %}" style="transition: all 0.2s;">
+                    <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
+                    <label class="form-check-label" for="option{{ loop.index }}">
+                        {{ option }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-warning">
+                No options available for this question. Please contact an administrator.
+            </div>
+            {% endif %}
+            
+            <input type="hidden" id="correctAnswer" value="{{ question.answer }}">
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-4">
+                {% if question_id > 1 %}
+                <a href="/quiz/{{ question_id - 1 }}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Previous Question
+                </a>
+                {% else %}
+                <a href="/learn/1" class="btn btn-outline-success">
+                    <i class="bi bi-book"></i> Back to Lessons
+                </a>
+                {% endif %}
+                <button type="submit" class="btn btn-primary">
+                    Submit Answer <i class="bi bi-check-lg"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
 
-        <button type="submit">Next</button>
-    </form>
-</body>
-</html>
+{% block scripts %}
+<script>
+document.getElementById('quizForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+    const correctAnswer = document.getElementById('correctAnswer').value;
+    
+    if (!selectedOption) {
+        alert("Please select an answer before submitting.");
+        return;
+    }
+    
+    if (selectedOption.value !== correctAnswer) {
+        // Show incorrect answer toast
+        showToast('Incorrect answer! The correct answer is: ' + correctAnswer);
+        
+        // Add a delay before submitting to allow the user to see the toast
+        setTimeout(() => {
+            this.submit();
+        }, 3000);
+    } else {
+        // Show correct answer toast
+        showToast('Correct answer!', 'success');
+        
+        // Add a shorter delay before submitting
+        setTimeout(() => {
+            this.submit();
+        }, 1500);
+    }
+});
+
+// Make the option boxes highlight when hovered or selected
+const optionBoxes = document.querySelectorAll('.form-check');
+optionBoxes.forEach(box => {
+    box.addEventListener('mouseover', function() {
+        if (!this.querySelector('input').checked) {
+            this.classList.add('border-primary');
+        }
+    });
+    
+    box.addEventListener('mouseout', function() {
+        if (!this.querySelector('input').checked) {
+            this.classList.remove('border-primary');
+        }
+    });
+    
+    box.addEventListener('click', function() {
+        // Remove highlighting from all boxes
+        optionBoxes.forEach(b => {
+            b.classList.remove('border-primary');
+            b.classList.remove('bg-light');
+        });
+        
+        // Add highlighting to the selected box
+        this.classList.add('border-primary');
+        this.classList.add('bg-light');
+    });
+});
+
+function showToast(message, type = 'error') {
+    const toastContainer = document.querySelector('.toast-container');
+    
+    const toastEl = document.createElement('div');
+    toastEl.classList.add('toast');
+    if (type === 'error') {
+        toastEl.classList.add('custom-toast');
+    } else {
+        toastEl.classList.add('bg-success', 'text-white');
+    }
+    toastEl.setAttribute('role', 'alert');
+    toastEl.setAttribute('aria-live', 'assertive');
+    toastEl.setAttribute('aria-atomic', 'true');
+    
+    toastEl.innerHTML = `
+        <div class="toast-header">
+            <strong class="me-auto">${type === 'error' ? 'Incorrect Answer' : 'Correct Answer!'}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            ${message}
+        </div>
+    `;
+    
+    toastContainer.appendChild(toastEl);
+    
+    const toast = new bootstrap.Toast(toastEl, {
+        autohide: true,
+        delay: type === 'error' ? 5000 : 3000
+    });
+    
+    toast.show();
+}
+</script>
+{% endblock %}
