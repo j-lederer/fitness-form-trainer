@@ -2,13 +2,37 @@
   {
     "title": "Proper Push-up Form",
     "content": "<p>Push-ups are a fundamental exercise that targets multiple muscle groups...</p><h3>Key Points:</h3><ul><li>Keep your body in a straight line</li><li>Position hands slightly wider than shoulder width</li><li>Lower your chest to the ground</li><li>Push through your palms to return to starting position</li></ul>",
-    "video": "pushup.mp4",
+    "video": "pushupgood.mp4",
     "image": "pushup.jpg"
   },
   {
     "title": "Squat Technique",
-    "content": "<p>Squats are essential for developing lower body strength...</p>",
+    "content": "<p>Squats are essential for developing lower-body strength and proper movement mechanics.</p><h3>Key Points:</h3><ul><li>Feet shoulder-width apart, toes slightly turned out, weight balanced across the mid-foot.</li><li>Brace the core, keep chest tall, push hips back and down until thighs reach at least parallel, with knees tracking over toes.</li><li>Drive through the heels to return to standing, squeezing the glutes at the top while maintaining a neutral spine.</li></ul>",
     "video": "squat.mp4",
     "image": "squat.jpg"
+  },
+  {
+    "title": "Deadlift Technique",
+    "content": "<p>The deadlift is a hip‑hinge movement that strengthens the posterior chain and reinforces safe lifting mechanics.</p><h3>Key Points:</h3><ul><li>Stand with mid‑foot under the bar, feet hip‑width, shins close but not touching; grip the bar just outside the legs.</li><li>Set the back neutral, brace the core, hinge at the hips, and lift by driving the floor away until hips and knees lock out together.</li><li>Lower the bar by hinging the hips back first, keeping the bar close to the body, until it returns to the floor under control.</li></ul>",
+    "video": "deadlift.mp4",
+    "image": "deadlift.jpg"
+  },
+  {
+    "title": "Bench Press Technique",
+    "content": "<p>The bench press develops upper‑body pushing power and chest, shoulder, and triceps strength.</p><h3>Key Points:</h3><ul><li>Lie on the bench with eyes under the bar, feet planted, slight arch in lower back, and shoulder blades retracted.</li><li>Grip the bar slightly wider than shoulder‑width, unrack, lower to the mid‑chest keeping elbows ~75° from torso.</li><li>Press the bar back up along the same path until elbows are locked, maintaining tightness through the upper back.</li></ul>",
+    "video": "bench_press.mp4",
+    "image": "bench_press.jpg"
+  },
+  {
+    "title": "Row Technique",
+    "content": "<p>Rows build balanced pulling strength in the lats, rhomboids, and rear delts while reinforcing good posture and scapular control.</p><h3>Key Points:</h3><ul><li>Hinge at the hips with a neutral spine; chest lifted and core braced as you grip the bar, dumbbells, or cable handle.</li><li>Pull the elbows back toward your hips, squeezing the shoulder blades together without shrugging or using momentum.</li><li>Lower the weight under control, keeping the torso stable and avoiding any twisting or rounding of the back.</li></ul>",
+    "video": "rowgood.mp4",
+    "image": "row.jpg"
+  },
+  {
+    "title": "Plank Technique",
+    "content": "<p>Planks train deep core stability by teaching the body to resist extension and rotation, improving power transfer and protecting the spine in every lift.</p><h3>Key Points:</h3><ul><li>Set forearms directly under shoulders and extend legs so the body forms a straight line from head to heels.</li><li>Brace the core and glutes, tuck the pelvis slightly to prevent sagging, and keep the gaze down to maintain a neutral neck.</li><li>Breathe steadily while holding; end the set once you can no longer keep the hips level or the spine neutral.</li></ul>",
+    "video": "plankgood.mp4",
+    "image": "plank.jpg"
   }
 ]

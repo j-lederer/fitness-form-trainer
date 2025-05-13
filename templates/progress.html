@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Progress{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Exercise Progress</h1>
+
+<section class="d-flex flex-column gap-4">
+  {% for ex in exercises %}
+  {% set lid = loop.index %}   {# lesson-/exercise-ID (1-based) #}
+  <article
+    class="exercise-card d-flex align-items-center justify-content-between bg-white border rounded p-3 shadow-sm"
+  >
+    <!-- left side -->
+    <div class="d-flex align-items-center gap-3">
+      <img class="thumb rounded"
+           src="{{ url_for('static', filename='images/' + ex.thumb) }}"
+           alt="{{ ex.name }}" width="80" height="80">
+      <div>
+        <div class="fw-bold fs-5">{{ ex.name }}</div>
+        <div class="text-muted">{{ ex.focus }}</div>
+        <div class="fst-italic text-secondary">{{ ex.difficulty }}</div>
+      </div>
+    </div>
+
+    <!-- right side -->
+    <div class="text-end">
+      {% if lid in completed %}
+        <span class="text-success">
+          <i class="bi bi-check-circle-fill"></i> Completed
+        </span>
+      {% else %}
+        <span class="text-danger">
+          <i class="bi bi-x-circle"></i> Not completed
+        </span>
+      {% endif %}
+    </div>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

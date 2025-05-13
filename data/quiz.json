@@ -1,7 +1,7 @@
 [
   {
     "question": "What is wrong with the form shown in this video?",
-    "video": "wrong_pushup.mp4",
+    "video": "pushupbad.mp4",
     "options": [
       "Hands positioned too wide",
       "Hips sagging too low",
@@ -19,5 +19,38 @@
       "Calves"
     ],
     "answer": "Core"
+  },
+  {
+    "question": "What is wrong with the form shown in this video?",
+    "video": "benchbad.mp4",
+    "options": [
+      "Hands positioned too wide",
+      "Hips sagging too low",
+      "Elbows flaring out too much",
+      "Not going down far enough"
+    ],
+    "answer": "Elbows flaring out too much"
+  },
+  {
+    "question": "What is wrong with the form shown in this video?",
+    "video": "squatbad.mp4",
+    "options": [
+      "Back arched too much and not straight",
+      "Hips sagging too low",
+      "Elbows flaring out too much",
+      "Not going down far enough"
+    ],
+    "answer": "Back arched too much and not straight"
+  }, 
+  {
+    "question": "What is wrong with the form shown in this video?",
+    "video": "rowbad.mp4",
+    "options": [
+      "Back arched too much and not straight",
+      "Hips sagging too low",
+      "Elbows flaring out too much",
+      "Not going down far enough"
+    ],
+    "answer": "Elbows flaring out too much"
   }
 ]
